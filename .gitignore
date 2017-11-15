@@ -1,4 +1,10 @@
 
+node_modules
+.DS_Store
+
+#ignore this file
+test.txt
+
 gs
 logs
 *.log
