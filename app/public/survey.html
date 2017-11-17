@@ -101,61 +101,60 @@
 
   <script type="text/javascript">
 
-  //  $("#form").on("submit", function(event) {
-  //   event.preventDefault();
-  //   var answers = [];
-  //   for (var i = 2; i < 12; i++) {
-  //     answers.push(parseInt(event.target[i].value));
-  //   }
-
-  //   var newFriend = {
-  //     "name": event.target.name.value.trim(),
-  //     "photo": event.target.photo.value.trim(),
-  //     "scores": answers
-  //   };
-
-  //   event.target.reset();
-
-  //   console.log(newFriend);
-
-  //   $.ajax({
-  //     url: "/api/friends",
-  //     data: JSON.stringify(newFriend),
-  //     type: "POST",
-  //     contentType: "application/json",
-  //     dataType: "json"
-  //   }).success(function(data) {
-  //     $("#friendName").text(data.name);
-  //     $("#friendPic").attr("src", data.photo);
-  //     $("#friendModal").modal('toggle');
-  //   });
-
-
-
-  // });
-
-
-  
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
-
-      console.log(event);
       
       event.preventDefault();
-      var newCharacter = {
+
+      var newFriend = {
         name: $("#name").val().trim(),
         pic: $("#pic").val().trim(),
         scores: [$("#question1").val().trim(), $("#question2").val().trim(), $("#question3").val().trim(), $("#question4").val().trim()]
 
       };
 
-      // Question: What does this code do??
-      $.post("/api/new", newCharacter)
-      .done(function(data) {
-        console.log(data);
-        alert("Adding character...");
+      // console.log(newFriend);
+
+      var friendData = JSON.stringify(newFriend); //the newly created object
+      $.ajax({
+          url: "api/new",
+          type: "POST",
+          data: friendData,
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+      }).done(function(data) {
+          console.log(data);
+
+
+
       });
+
     });
+
+
+  
+    // Question: What does this code do?
+    // $("#add-btn").on("click", function(event) {
+
+    //   console.log(event);
+      
+    //   event.preventDefault();
+    //   var newCharacter = {
+    //     name: $("#name").val().trim(),
+    //     pic: $("#pic").val().trim(),
+    //     scores: [$("#question1").val().trim(), $("#question2").val().trim(), $("#question3").val().trim(), $("#question4").val().trim()]
+
+    //   };
+
+    //   // Question: What does this code do??
+    //   $.post("/api/new", newCharacter)
+    //   .done(function(data) {
+    //     console.log(data);
+    //     alert("Adding character...");
+    //   });
+    // });
+
+
   </script>
 
 </body>
