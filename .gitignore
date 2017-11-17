@@ -4,6 +4,8 @@ node_modules
 
 #ignore this file
 test.txt
+test2.txt
+
 
 gs
 logs
