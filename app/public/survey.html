@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars - Express</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Survey Question</h1>
+      <!-- <h3>The greatest resource in the galaxy for Star Wars statistics!</h3> -->
+      <hr>
+      <a href="/home"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View Friends</button></a>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>About You</strong></h3>
+          </div>
+          <div class="panel-body">
+            <form method="POST" role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group">
+                <label for="pic">Link to photo image</label>
+                <input type="text" class="form-control" id="pic">
+              </div>
+
+               <div class="form-group">
+                <label for="question1">Your mind is always buzzing with unexplored ideas and plans (rate: 1 - 5).</label>
+                <select name="q1" class="form-control" id="question1" required>
+                  <option value="" disabled selected>Select an Option</option>
+                  <option value="1">1 (Strongly Disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5 (Strongly Agree)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="question2">Your mind is always buzzing with unexplored ideas and plans (rate: 1 - 5).</label>
+                <select name="q2" class="form-control" id="question2" required>
+                  <option value="" disabled selected>Select an Option</option>
+                  <option value="1">1 (Strongly Disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5 (Strongly Agree)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="question3">Generally speaking, you rely more on your experience than your imagination (rate: 1 - 5).</label>
+                <select name="q3" class="form-control" id="question3" required>
+                  <option value="" disabled selected>Select an Option</option>
+                  <option value="1">1 (Strongly Disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5 (Strongly Agree)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="question4">You rarely do something just out of sheer curiosity (rate: 1 - 5).</label>
+                <select name="q5" class="form-control" id="question4" required>
+                  <option value="" disabled selected>Select an Option</option>
+                  <option value="1">1 (Strongly Disagree)</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5 (Strongly Agree)</option>
+                </select>
+              </div>
+
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+  //  $("#form").on("submit", function(event) {
+  //   event.preventDefault();
+  //   var answers = [];
+  //   for (var i = 2; i < 12; i++) {
+  //     answers.push(parseInt(event.target[i].value));
+  //   }
+
+  //   var newFriend = {
+  //     "name": event.target.name.value.trim(),
+  //     "photo": event.target.photo.value.trim(),
+  //     "scores": answers
+  //   };
+
+  //   event.target.reset();
+
+  //   console.log(newFriend);
+
+  //   $.ajax({
+  //     url: "/api/friends",
+  //     data: JSON.stringify(newFriend),
+  //     type: "POST",
+  //     contentType: "application/json",
+  //     dataType: "json"
+  //   }).success(function(data) {
+  //     $("#friendName").text(data.name);
+  //     $("#friendPic").attr("src", data.photo);
+  //     $("#friendModal").modal('toggle');
+  //   });
+
+
+
+  // });
+
+
+  
+    // Question: What does this code do?
+    $("#add-btn").on("click", function(event) {
+
+      console.log(event);
+      
+      event.preventDefault();
+      var newCharacter = {
+        name: $("#name").val().trim(),
+        pic: $("#pic").val().trim(),
+        scores: [$("#question1").val().trim(), $("#question2").val().trim(), $("#question3").val().trim(), $("#question4").val().trim()]
+
+      };
+
+      // Question: What does this code do??
+      $.post("/api/new", newCharacter)
+      .done(function(data) {
+        console.log(data);
+        alert("Adding character...");
+      });
+    });
+  </script>
+
+</body>
+</html>
